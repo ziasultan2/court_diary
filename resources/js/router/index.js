@@ -22,6 +22,11 @@ import nestedRoutes from './modules/nested';
 import errorRoutes from './modules/error';
 import excelRoutes from './modules/excel';
 import permissionRoutes from './modules/permission';
+import lawyerRoutes from './modules/lawyer';
+import customerRoutes from './modules/customer';
+import courtRoutes from './modules/court';
+import eServiceRoutes from './modules/eService';
+import bookRoutes from './modules/book';
 
 /**
  * Sub-menu only appear when children.length>=1
@@ -92,6 +97,11 @@ export const constantRoutes = [
       },
     ],
   },
+  courtRoutes,
+  bookRoutes,
+  lawyerRoutes,
+  customerRoutes,
+  eServiceRoutes,
   {
     path: '/profile',
     component: Layout,
