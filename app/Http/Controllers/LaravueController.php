@@ -9,6 +9,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+
 /**
  * Class LaravueController
  *
@@ -24,5 +27,15 @@ class LaravueController extends Controller
     public function index()
     {
         return view('laravue');
+    }
+
+    public function test(Request $request)
+    {
+        $date = Carbon::createFromFormat('Y-m-d H:i:s', $request->start, $request->time_zone);
+        $utc = $date->setTimezone('UTC');
+        $track_utc = $utc;
+        // return $track_utc->addHours($utc->hour)->addMinutes($utc->minute)->addSeconds($utc->second);
+        $nextDay = $utc->next('sun');
+        return $nextDay->addHours($utc->hour)->addMinutes($utc->minute)->addSeconds($utc->second);
     }
 }

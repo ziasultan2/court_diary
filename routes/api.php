@@ -19,7 +19,16 @@ use \App\Laravue\Acl;
 */
 
 Route::namespace('Api')->group(function() {
+    Route::get('public-eservices', 'EServiceController@index');
+    Route::get('public-courts', 'CourtController@index');
+    Route::get('public-lawyers', 'LawyerController@index');
+    Route::get('public-customers', 'CustomerController@index');
+    Route::get('public-chambers', 'ChamberController@index');
+    Route::get('public-books', 'BookController@index');
+    Route::get('public-pdfs', 'PdfController@index');
+
     Route::post('auth/login', 'AuthController@login');
+
     Route::group(['middleware' => 'auth:sanctum'], function () {
         // Auth routes
         Route::get('auth/user', 'AuthController@user');
@@ -35,7 +44,7 @@ Route::namespace('Api')->group(function() {
         Route::apiResource('permissions', 'PermissionController')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
 
         // System
-        Route::apiResource('e-services', 'EServiceController');
+        Route::apiResource('eservices', 'EServiceController');
         Route::apiResource('courts', 'CourtController');
         Route::apiResource('lawyers', 'LawyerController');
         Route::apiResource('customers', 'CustomerController');

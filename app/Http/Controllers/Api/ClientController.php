@@ -29,21 +29,24 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
-        //
+        Client::create($request->all());
     }
 
     public function show($id)
     {
-        //
+        return new ClientResource(Client::find($id));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $client = Client::find($id);
+        $client->update($request->all());
+        return $client;
     }
 
     public function destroy($id)
     {
-        //
+        $client = Client::find($id);
+        return $client->delete();
     }
 }

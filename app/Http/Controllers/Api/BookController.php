@@ -25,16 +25,16 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-        Storage::disk('local')->put('books/', $request->file('file'));
+        $path = Storage::disk('s3')->put('books/', $request->file('file'));
         return Book::create([
             'name' => $request->name,
-            'path' => $request->path,
+            'path' => $path,
         ]);
     }
 
     public function destroy(Book $book)
     {
-        Storage::disk('local')->delete($book->path);
+        Storage::disk('s3')->delete($book->path);
         return $book->delete();
     }
 }

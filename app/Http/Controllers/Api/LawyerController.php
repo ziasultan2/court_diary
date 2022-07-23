@@ -24,7 +24,7 @@ class LawyerController extends Controller
 
     public function store(Request $request)
     {
-        //
+        return Lawyer::create($request->all());
     }
 
     public function show($id)
@@ -34,11 +34,13 @@ class LawyerController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $lawyer = Lawyer::find($id);
+        $lawyer->update($request->all());
+        return $lawyer;
     }
 
     public function destroy($id)
     {
-        //
+        
     }
 }

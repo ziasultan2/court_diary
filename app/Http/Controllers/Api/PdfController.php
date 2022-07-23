@@ -3,32 +3,23 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Laravue\Models\Pdf;
 use Illuminate\Http\Request;
 
-class CaseController extends Controller
+class PdfController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return response()->json(['success' => true, 'data' => Pdf::all()]);
     }
 
     public function store(Request $request)
     {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
+        return Pdf::create($request->all());
     }
 
     public function destroy($id)
     {
-        //
+        return Pdf::find($id)->delete();
     }
 }
